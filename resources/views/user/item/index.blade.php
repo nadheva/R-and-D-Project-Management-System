@@ -37,7 +37,7 @@
                     <span class="text-secondary text-xs font-weight-bold" >{{ $item->kode_perangkat }}</span>
                   </td> --}}
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold" maxlength="10" >{{ $item->name }}</span>
+                    <span class="text-secondary text-xs font-weight-bold" maxlength="10" >{{ $i->name }}</span>
                   </td>
                   {{-- <td class="align-middle text-center">
                     <img src="{{ asset( $item->gambar) }}" style="max-width: 70px" class="img-fluid shadow border-radius-xl">
@@ -49,7 +49,7 @@
                     <span class="text-secondary text-xs font-weight-bold">Rp. @money($item->harga)</span>
                   </td> --}}
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;">{!! $item->description !!}</span>
+                    <span class="text-secondary text-xs font-weight-bold" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;">{!! $i->description !!}</span>
                   </td>
                   <td>
                     <div class="align-middle text-center">
@@ -89,8 +89,8 @@
                             <input type="number" class="form-control" name="kode_perangkat" placeholder="4 Digit" required>
                         </div> --}}
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Nama:</label>
-                            <input type="text" class="form-control" name="nama" placeholder="*Item name" required>
+                            <label for="recipient-name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" name="name" placeholder="*Item name" required>
                         </div>
                         {{-- <div class="form-group">
                             <label for="message-text" class="col-form-label">Gambar:</label>
@@ -110,7 +110,7 @@
                         </div> --}}
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Description:</label>
-                            <textarea class="form-control" name="deskripsi" placeholder="*Item description" required></textarea>
+                            <textarea class="form-control" name="description" placeholder="*Item description" required></textarea>
                         </div>
 
                     </div>
