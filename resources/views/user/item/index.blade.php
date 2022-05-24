@@ -8,7 +8,7 @@
               <h6 class="mb-0">Item</h6>
             </div>
             <div class="col-6 text-end">
-                <a class="btn bg-gradient-dark mb-0" href="" data-bs-toggle="modal" data-bs-target="#tambahPerangkat"><i class="fas fa-plus"></i>&nbsp;&nbsp;Tambah Perangkat</a>
+                <a class="btn bg-gradient-dark mb-0" href="" data-bs-toggle="modal" data-bs-target="#tambahPerangkat"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add Item</a>
               </div>
           </div>
         </div>
