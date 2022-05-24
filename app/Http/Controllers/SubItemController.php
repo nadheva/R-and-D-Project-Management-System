@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sub_item;
+use App\Models\Item;
 
 class SubItemController extends Controller
 {
@@ -20,7 +21,8 @@ class SubItemController extends Controller
     public function index()
     {
         $sub_item = Sub_item::latest()->get();
-        return view('user.sub-item.index', compact('sub_item'));
+        $item = Item::get();
+        return view('user.sub-item.index', compact('sub_item', 'item'));
     }
 
     /**

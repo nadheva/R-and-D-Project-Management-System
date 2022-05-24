@@ -8,6 +8,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RioController;
 use App\Http\Controllers\SubItemController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
@@ -39,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('sub-item', SubItemController::class);
     Route::resource('dashboard', DashboardController::class);
     Route::resource('user', DashboardController::class);
-    Route::get('logout', [AuthenticatedSessionController::class, 'destroy'] );
+    Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'] );
 });
 
 require __DIR__.'/auth.php';

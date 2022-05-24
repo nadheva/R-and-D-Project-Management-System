@@ -4,12 +4,12 @@
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0"
-            href=" https://demos.creative-tim.com/soft-ui-dashboard-pro/pages/dashboards/default.html " target="_blank">
+            href="{{route('dashboard.index')}}">
             <img src="{{ asset('tadmin/assets/img/logo-avi.png') }}" class="navbar-brand-img h-100"
                 alt="main_logo">
-            <p class="mb-3">
-            <span class="ms-1 font-weight-bold" style="align-items: center">Astra Visteon Indonesia</span>
-            </p>
+            <br class="mb-3">
+            <span class="ms-1 font-weight-bold" style="align-items: center">R&D Task Management System</span>
+    </br>
         </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -17,7 +17,7 @@
         <ul class="navbar-nav">
             {{-- Dashboard --}}
             <li class="nav-item">
-                <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">
+                <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{route('dashboard.index')}}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
@@ -366,6 +366,44 @@
                         </div>
                         <span class="nav-link-text ms-1">RIO</span>
                     </a>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#order" class="nav-link {{Route::is('order*') ? 'active' : ''}}" aria-controls="order" role="button" aria-expanded="false">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                        <svg class="text-dark" width="16px" height="16px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>credit-card</title>
+                        <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Rounded-Icons" transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                            <g id="Icons-with-opacity" transform="translate(1716.000000, 291.000000)">
+                                <g id="credit-card" transform="translate(453.000000, 454.000000)">
+                                <path class="color-background" d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z" id="Path" opacity="0.593633743"></path>
+                                <path class="color-background" d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"></path>
+                                </g>
+                            </g>
+                            </g>
+                        </g>
+                        </svg>
+                    </div>
+                    <span class="nav-link-text ms-1">Item</span>
+                    </a>
+                    <div class="collapse   {{Route::is('order.*') ? 'show' : ''}}" id="order">
+                    <ul class="nav ms-4 ps-3">
+                        <li class="nav-item {{Route::is('order.*') ? 'active' : ''}}">
+                        <a class="nav-link {{Route::is('item.*') ? 'active' : ''}}" href="{{route('item.index')}}">
+                            <span class="sidenav-mini-icon"> K </span>
+                            <span class="sidenav-normal"> Main Item </span>
+                        </a>
+                        </li>
+                    </ul>
+                    <ul class="nav ms-4 ps-3">
+                        <li class="nav-item {{Route::is('order.*') ? 'active' : ''}}">
+                        <a class="nav-link {{Route::is('sub-item.*') ? 'active' : ''}}" href="{{route('sub-item.index')}}">
+                            <span class="sidenav-mini-icon"> K </span>
+                            <span class="sidenav-normal"> Sub Item </span>
+                        </a>
+                        </li>
+                    </ul>
+                    </div>
                 </li>
             @endif
 

@@ -18,7 +18,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="tadmin/assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="tadmin/assets/img/favicon.png">
+  <link rel="icon" type="image/png" href="{{asset('tadmin/assets/img/logo-avi.png')}}">
   <title>
     R&D Task Monitoring System
   </title>
@@ -39,7 +39,7 @@
   <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent mt-4">
     <div class="container">
       <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white" href="../../../pages/dashboards/default.html">
-        PT Astra Visteon Indonesia
+        PT. Astra Visteon Indonesia
       </a>
       <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon mt-2">
@@ -52,13 +52,13 @@
   </nav>
   <!-- End Navbar -->
   <main class="main-content  mt-0">
-    <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('tadmin/assets/img/curved-images/curved9.jpg');">
+    <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('tadmin/assets/img/curved-images/avi.jpg');">
       <span class="mask bg-gradient-dark opacity-6"></span>
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-5 text-center mx-auto">
             <h1 class="text-white mb-2 mt-5">Welcome!</h1>
-            <p class="text-lead text-white">Silahkan login dengan email dan password!</p>
+            <p class="text-lead text-white">-- R&D Task Management System --</p>
           </div>
         </div>
       </div>
@@ -68,7 +68,11 @@
         <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
           <div class="card z-index-0">
             <div class="card-header text-center pt-4">
-              <h5>Sign in</h5>
+              <div class="logo-box">
+                <img src="{{asset('tadmin/assets/img/logo-avi.png')}}" width="280px" style="padding-right: 20px;" class="img-fluid"
+                    alt="">
+            </div>
+            {{-- <h5>Sign in</h5> --}}
             </div>
             {{-- <div class="row px-xl-5 px-sm-4 px-3">
               <div class="col-3 ms-auto px-1">
@@ -123,7 +127,7 @@
                   <label class="form-check-label" for="rememberMe">Remember me</label>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn bg-gradient-info w-100 my-4 mb-2">Masuk</button>
+                  <button type="submit" class="btn bg-gradient-info w-100 my-4 mb-2">Sign In</button>
                 </div>
                 {{-- <div class="mb-2 position-relative text-center">
                   <p class="text-sm font-weight-bold mb-2 text-secondary text-border d-inline z-index-2 bg-white px-3">
