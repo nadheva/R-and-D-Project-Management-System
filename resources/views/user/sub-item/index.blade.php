@@ -39,6 +39,9 @@
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold" maxlength="10" >{{ $i->name }}</span>
                   </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold" maxlength="10" >{{ $i->item->name }}</span>
+                  </td>
                   {{-- <td class="align-middle text-center">
                     <img src="{{ asset( $item->gambar) }}" style="max-width: 70px" class="img-fluid shadow border-radius-xl">
                   </td> --}}
