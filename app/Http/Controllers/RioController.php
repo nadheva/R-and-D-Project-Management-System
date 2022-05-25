@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RIO;
+use App\Models\User;
+use App\Models\ModelProduct;
 
 class RioController extends Controller
 {
@@ -20,7 +22,9 @@ class RioController extends Controller
     public function index()
     {
         $rio = RIO::all();
-        return view('user.rio.index', compact('rio'));
+        $model = ModelProduct::latest()->get();
+        $user = User::latest()->get();
+        return view('user.rio.index', compact('rio', 'model', 'user'));
     }
 
     /**
