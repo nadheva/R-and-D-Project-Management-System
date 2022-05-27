@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\RIO;
 use App\Models\User;
 use App\Models\ModelProduct;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RioController extends Controller
 {
@@ -63,8 +64,8 @@ class RioController extends Controller
             'due_date' => \Carbon\Carbon::createFromFormat('Y-m-d', $request->due_date),
             'status' => 'Open',
         ]);
-
-        return redirect()->back()->with('success', 'Success!');
+        Alert::success('Congrats!', 'Data has been submitted!');
+        return redirect()->back();
     }
 
     /**
