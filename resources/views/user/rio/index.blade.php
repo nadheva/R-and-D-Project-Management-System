@@ -75,7 +75,7 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form method="POST" action="{{ route('sub-item.store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('rio.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="tambahPerangkatLabel">Add Project RIO</h5>
@@ -112,7 +112,7 @@
                           </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Due Date:</label>
-                            <input class="form-control datetimepicker" placeholder="Please select date" type="date" onfocus="focused(this)" onfocusout="defocused(this)" name="due_date">
+                            <input class="form-control datetimepicker" name="due_date"  placeholder="Please select date" type="date" onfocus="focused(this)" onfocusout="defocused(this)">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -132,7 +132,7 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form method="post" action="{{ url('item-update', $i->id) }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('rio-update', $i->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="modal-header">

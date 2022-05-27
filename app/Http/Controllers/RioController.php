@@ -52,7 +52,6 @@ class RioController extends Controller
             'action' => 'required',
             'user_id' => 'required',
             'due_date' => 'required',
-            'status' => 'required'
         ]);
 
         RIO::create([
