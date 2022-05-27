@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-Use App\Models\Project;
+use App\Models\Project;
+use App\Models\ModelProduct;
+use App\Models\User;
+use App\Models\Item;
 
 class ProjectController extends Controller
 {
@@ -20,7 +23,10 @@ class ProjectController extends Controller
     public function index()
     {
         $project = Project::latest()->get();
-        return view('user.project.index', compact('project'));
+        $model = ModelProduct::latest()->get();
+        $item = Item::latest()->get();
+        $user = User::all();
+        return view('user.project.index', compact('project', 'model', 'user', 'item'));
     }
 
     /**

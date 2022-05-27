@@ -15,7 +15,7 @@ class CreateRioTable extends Migration
     {
         Schema::create('rio', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('model')->constrained('model')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('model_id')->constrained('model')->onUpdate('cascade')->onDelete('cascade');
             $table->string('issue');
             $table->text('detail');
             $table->text('action');

@@ -60,7 +60,7 @@ class RioController extends Controller
             'detail' => $request->detail,
             'action' => $request->action,
             'user_id' => $request->user_id,
-            'due_date' => $request->due_date,
+            'due_date' => \Carbon\Carbon::createFromFormat('Y-m-d', $request->due_date),
             'status' => 'Open',
         ]);
 

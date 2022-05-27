@@ -28,16 +28,16 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($rio as $item)
+                @foreach ($rio as $i)
                 <tr>
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold" >{{ $item->model->name }}</span>
+                    <span class="text-secondary text-xs font-weight-bold" >{{ $i->model->name }}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold" >{{ $item->issue }}</span>
+                    <span class="text-secondary text-xs font-weight-bold" >{{ $i->issue }}</span>
                   </td>
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;">{!! $i->detail !!}</span>
@@ -46,10 +46,13 @@
                     <span class="text-secondary text-xs font-weight-bold" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;">{!! $i->action !!}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold" >{{ $item->user->name }}</span>
+                    <span class="text-secondary text-xs font-weight-bold" >{{ $i->user->name }}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold" >{{ $item->due_date }}</span>
+                    <span class="text-secondary text-xs font-weight-bold" >{{ $i->due_date }}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold" >{{ $i->status }}</span>
                   </td>
                   <td>
                     <div class="align-middle text-center">
@@ -102,6 +105,10 @@
                             <textarea class="form-control" name="detail" id="mytextarea" placeholder="*Detail" required></textarea>
                         </div>
                         <div class="form-group">
+                            <label for="message-text" class="col-form-label">Action:</label>
+                            <textarea class="form-control" name="action" id="mytextarea" placeholder="*Action" required></textarea>
+                        </div>
+                        <div class="form-group">
                             <label for="exampleFormControlSelect1" class="col-form-label">PIC:</label>
                             <select class="form-control" name="user_id" id="exampleFormControlSelect1" required>
                             <option value="">--Select PIC--</option>
@@ -147,7 +154,7 @@
                                 <select class="form-control" name="model_id" id="exampleFormControlSelect1" required>
                                   <option value="{{$i->model_id}}" selected>{{$i->model->name}}</option>
                                   @foreach ($model as $i)
-                                  <option value="{{$i->model_id}}">{{$i->model->name}}</option>
+                                  <option value="{{$i->id}}">{{$i->name}}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -162,7 +169,7 @@
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1" class="col-form-label">PIC:</label>
                                 <select class="form-control" name="user_id" id="exampleFormControlSelect1" required>
-                                <option value="{{$i->user_id}}">{{$i->user->name}}</option>
+                                {{-- <option value="{{$i->user_id}}">{{$i->user->name}}</option> --}}
                                   @foreach ($user as $i)
                                   <option value="{{$i->id}}">{{$i->name}}</option>
                                   @endforeach
