@@ -20,7 +20,7 @@ class ModelController extends Controller
 
     public function index()
     {
-        $model = Model::all();
+        $model = ModelProduct::all();
         return view('user.model.index', compact('model'));
     }
 
@@ -59,8 +59,10 @@ class ModelController extends Controller
         ModelProduct::create([
             'name' => $request->name,
             'description' => $request->description,
-            'image' => $$txt
+            'image' => $txt
         ]);
+
+        return redirect()->back()->with('success', 'Success!');
     }
 
     /**
@@ -95,7 +97,7 @@ class ModelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $model = ModelProduct::findOrfail($id);
+        $model = ModelProduct::find($id);
         $model->name = $request->name;
         $model->description = $request->description;
         if (isset($request->image)) {
@@ -107,6 +109,7 @@ class ModelController extends Controller
         } else {
             $file_name = null;
         }
+        $model->save();
 
     return redirect()->back()->with('info', 'Edited!');
 

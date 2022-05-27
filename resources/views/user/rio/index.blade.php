@@ -87,8 +87,8 @@
                         <div class="form-group">
                             <label for="exampleFormControlSelect1" class="col-form-label">Model:</label>
                             <select class="form-control" name="model_id" id="exampleFormControlSelect1" required>
-                              @foreach ($model as $i)
                               <option value="">--Select Model--</option>
+                              @foreach ($model as $i)
                               <option value="{{$i->id}}">{{$i->name}}</option>
                               @endforeach
                             </select>

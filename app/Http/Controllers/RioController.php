@@ -62,7 +62,7 @@ class RioController extends Controller
             'action' => $request->action,
             'user_id' => $request->user_id,
             'due_date' => $request->due_date,
-            'status' => $request->status,
+            'status' => 'Open',
         ]);
 
         return redirect()->back()->with('success', 'Success!');
