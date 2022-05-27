@@ -64,7 +64,7 @@ class RioController extends Controller
             'due_date' => \Carbon\Carbon::createFromFormat('Y-m-d', $request->due_date),
             'status' => 'Open',
         ]);
-        Alert::success('Congrats!', 'Data has been submitted!');
+        Alert::success('Success', 'Data has been submitted!');
         return redirect()->back();
     }
 
@@ -109,8 +109,8 @@ class RioController extends Controller
         $rio->due_date = $request->due_date;
         $rio->status = $request->status;
         $rio->save();
-
-        return redirect()->back()->with('info', 'Edited!');
+        Alert::info('Info', 'Data has been updated!');
+        return redirect()->back();
 
     }
 
@@ -123,7 +123,8 @@ class RioController extends Controller
     public function destroy($id)
     {
         $rio = RIO::findOrfail($id)->delete();
-        return redirect()->back()->with('warning', 'Deleted!');
+        Alert::warning('Warning', 'Data has been deleted!');
+        return redirect()->back();
 
     }
 }
