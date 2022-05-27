@@ -102,9 +102,13 @@
                             </select>
                           </div>
                           <div class="form-group">
-                            <label for="message-text" class="col-form-label">Sub Item:</label>
-                            <textarea class="form-control" name="sub_item" id="mytextarea" placeholder="*Sub item" required></textarea>
-                        </div>
+                            <label for="exampleFormControlSelect1" class="col-form-label">Sub Item:</label>
+                            <select class="form-control" name="sub_item[]" multiple="multiple" id="select2Multiple" required>
+                              @foreach ($sub_item as $i)
+                              <option value="{{$i->id}}">{{$i->name}}</option>
+                              @endforeach
+                            </select>
+                          </div>
                         <div class="form-group">
                             <label for="exampleFormControlSelect1" class="col-form-label">PIC:</label>
                             <select class="form-control" name="user_id" id="exampleFormControlSelect1" required>
@@ -230,6 +234,15 @@
                 }
               });
           });
+
+        $(document).ready(function() {
+            // Select2 Multiple
+            $('.select2-multiple').select2({
+                placeholder: "Select",
+                allowClear: true
+            });
+
+        });
 
 
     </script>

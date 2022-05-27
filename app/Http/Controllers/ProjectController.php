@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\ModelProduct;
 use App\Models\User;
 use App\Models\Item;
+use App\Models\Sub_item;
 
 class ProjectController extends Controller
 {
@@ -26,7 +27,8 @@ class ProjectController extends Controller
         $model = ModelProduct::latest()->get();
         $item = Item::latest()->get();
         $user = User::all();
-        return view('user.project.index', compact('project', 'model', 'user', 'item'));
+        $sub_item = Sub_item::all();
+        return view('user.project.index', compact('project', 'model', 'user', 'item', 'sub_item'));
     }
 
     /**
@@ -60,7 +62,7 @@ class ProjectController extends Controller
             'item_id' => $request->item_id,
             'user_id' => $request->user_id,
             'remark' => $request->remark,
-            'staus' => $request->status,
+            'staus' => 'Open',
         ]);
 
         return redirect()->back()->with('success', 'Success!');
