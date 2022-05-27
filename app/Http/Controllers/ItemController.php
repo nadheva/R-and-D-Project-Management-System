@@ -49,9 +49,8 @@ class ItemController extends Controller
             'name' => $request->name,
             'description' => $request->description
         ]);
-
-        return redirect()->back()
-        ->with('success', 'Success!');
+        Alert::success('Success', 'Data has been submitted!');
+        return redirect()->back();
     }
 
     /**
@@ -90,8 +89,8 @@ class ItemController extends Controller
         $item->name = $request->name;
         $item->description = $request->description;
         $item->save();
-
-        return redirect()->back()->with('info' ,'Edited!');
+        Alert::info('Info', 'Data has been updated!');
+        return redirect()->back();
     }
 
     /**
@@ -103,6 +102,7 @@ class ItemController extends Controller
     public function destroy($id)
     {
         $item = Item::findOrfail($id)->delete();
-        return redirect()->back()->with('warning', 'Deleted!');
+        Alert::warning('Warning', 'Data has been deleted!');
+        return redirect()->back();
     }
 }

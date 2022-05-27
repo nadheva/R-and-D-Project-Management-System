@@ -64,8 +64,8 @@ class ProjectController extends Controller
             'remark' => $request->remark,
             'staus' => 'Open',
         ]);
-
-        return redirect()->back()->with('success', 'Success!');
+        Alert::success('Success', 'Data has been submitted!');
+        return redirect()->back();
     }
 
     /**
@@ -107,8 +107,8 @@ class ProjectController extends Controller
         $project->remark = $request->remark;
         $project->status = $request->status;
         $project->save();
-
-        return redirect()->back()->with('info', 'Edited');
+        Alert::info('Info', 'Data has been updated!');
+        return redirect()->back();
 
     }
 
@@ -121,6 +121,7 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         $project = Project::findOrfail($id)->delete();
-        return redirect()->back()->with('warning', 'Deleted!');
+        Alert::warning('Warning', 'Data has been deleted!');
+        return redirect()->back();
     }
 }

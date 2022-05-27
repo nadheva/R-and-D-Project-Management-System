@@ -54,8 +54,8 @@ class SubItemController extends Controller
             'description' => $request->description,
             'item_id' => $request->item_id
         ]);
-
-        return redirect()->back()->with('success', 'Success!');
+        Alert::success('Success', 'Data has been submitted!');
+        return redirect()->back();
     }
 
     /**
@@ -95,8 +95,8 @@ class SubItemController extends Controller
         $sub_item->description = $request->description;
         $sub_item->item_id = $request->item_id;
         $sub_item->save();
-
-        return redirect()->back()->with('info', 'Edited!');
+        Alert::info('Info', 'Data has been updated!');
+        return redirect()->back();
     }
 
     /**
@@ -108,6 +108,7 @@ class SubItemController extends Controller
     public function destroy($id)
     {
         $sub_item = Sub_item::findOrfail($id)->delete();
-        return redirect()->back()->with('warning', 'Deleted!');
+        Alert::warning('Warning', 'Data has been deleted!');
+        return redirect()->back();
     }
 }

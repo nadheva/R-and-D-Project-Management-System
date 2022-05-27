@@ -61,8 +61,8 @@ class ModelController extends Controller
             'description' => $request->description,
             'image' => $txt
         ]);
-
-        return redirect()->back()->with('success', 'Success!');
+        Alert::success('Success', 'Data has been submitted!');
+        return redirect()->back();
     }
 
     /**
@@ -110,8 +110,8 @@ class ModelController extends Controller
             $file_name = null;
         }
         $model->save();
-
-    return redirect()->back()->with('info', 'Edited!');
+        Alert::info('Info', 'Data has been updated!');
+    return redirect()->back();
 
     }
 
@@ -124,6 +124,7 @@ class ModelController extends Controller
     public function destroy($id)
     {
         $model = ModelProduct::findOrfail($id)->delete();
-        return redirect()->back()->with('warning', 'Deleted!');
+        Alert::warning('Warning', 'Data has been deleted!');
+        return redirect()->back();
     }
 }
