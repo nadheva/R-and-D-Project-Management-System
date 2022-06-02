@@ -39,7 +39,7 @@
                     <span class="text-secondary text-xs font-weight-bold" >{{ $i->item->name }}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;">{{ $i->sub_item->name }}</span>
+                    <span class="text-secondary text-xs font-weight-bold" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;">{{$i->sub_item->name}}</span>
                   </td>
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold" >{{ $i->user->name }}</span>
@@ -47,9 +47,27 @@
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold" >{{ $i->remark }}</span>
                   </td>
+                  @if($i->status == 'Open')
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold" >{{ $i->status }}</span>
+                    <span class="badge badge-primary badge-sm font-weight-bold" >{{ $i->status }}</span>
                   </td>
+                  @elseif($i->status == 'On Progress')
+                  <td class="align-middle text-center">
+                    <span class="badge badge-info badge-sm font-weight-bold" >{{ $i->status }}</span>
+                  </td>
+                  @elseif($i->status == 'Need Update')
+                  <td class="align-middle text-center">
+                    <span class="badge badge-warning badge-sm font-weight-bold" >{{ $i->status }}</span>
+                  </td>
+                  @elseif($i->status == 'Not Required')
+                  <td class="align-middle text-center">
+                    <span class="badge badge-danger badge-sm font-weight-bold" >{{ $i->status }}</span>
+                  </td>
+                  @elseif($i->status == 'Done')
+                  <td class="align-middle text-center">
+                    <span class="badge badge-success badge-sm font-weight-bold" >{{ $i->status }}</span>
+                  </td>
+                  @endif
                   <td>
                     <div class="align-middle text-center">
                       <form id="form-delete" action="{{route('project.destroy', $i->id)}}" method="POST" style="display: inline">
@@ -140,7 +158,7 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form method="post" action="{{ url('project-update', $i->id) }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('project-update', $i->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="modal-header">
@@ -154,8 +172,8 @@
                                 <label for="exampleFormControlSelect1" class="col-form-label">Model:</label>
                                 <select class="form-control" name="model_id" id="exampleFormControlSelect1" required>
                                   <option value="{{$i->model_id}}">{{$i->model->name}}</option>
-                                  @foreach ($model as $i)
-                                  <option value="{{$i->id}}">{{$i->name}}</option>
+                                  @foreach ($model as $m)
+                                  <option value="{{$m->id}}">{{$m->name}}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -163,21 +181,25 @@
                                 <label for="exampleFormControlSelect1" class="col-form-label">Item:</label>
                                 <select class="form-control" name="item_id" id="exampleFormControlSelect1" required>
                                     {{-- <option value="{{$i->item_id}}">{{$i->item->name}}</option> --}}
-                                  @foreach ($item as $i)
-                                  <option value="{{$i->id}}">{{$i->name}}</option>
+                                  @foreach ($item as $a)
+                                  <option value="{{$a->id}}">{{$a->name}}</option>
                                   @endforeach
                                 </select>
                               </div>
                               <div class="form-group">
-                                <label for="message-text" class="col-form-label">Sub Item:</label>
-                                <textarea class="form-control" name="sub_item" id="mytextarea" placeholder="*Sub item" required>{{$i->sub_item}}</textarea>
-                            </div>
+                                <label for="exampleFormControlSelect1" class="col-form-label">Sub Item:</label>
+                                <select class="form-control" name="sub_item_id[]" multiple="multiple" data-live-search="true" id="select2Multiple" required>
+                                  @foreach ($sub_item as $s)
+                                  <option value="{{$s->id}}" {{ old("sub_item_id[]", $s->id) == $s->id ? "selected" : "" }}>{{$s->name}}</option>
+                                  @endforeach
+                                </select>
+                              </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1" class="col-form-label">PIC:</label>
                                 <select class="form-control" name="user_id" id="exampleFormControlSelect1" required>
                                 {{-- <option value="{{$i->user_id}}">{{$i->user->name}}</option> --}}
-                                  @foreach ($user as $i)
-                                  <option value="{{$i->id}}">{{$i->name}}</option>
+                                  @foreach ($user as $u)
+                                  <option value="{{$u->id}}">{{$u->name}}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -188,11 +210,10 @@
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1" class="col-form-label">Status:</label>
                                 <select class="form-control" name="status" id="exampleFormControlSelect1" required>
-                                <option value="{{$i->status}}" disabled>{{$i->status}}</option>
-                                <option value="Done">Done</option>
-                                <option value="On Progress">On Progress</option>
-                                <option value="Need Update">Need Update</option>
-                                <option value="Not Required">Not Required</option>
+                                {{-- <option value="{{$i->status}}" disabled>{{$i->status}}</option> --}}
+                                @foreach(["Need Update" => "Need Update", "Open" => "Open", "On Progress" => "On Progress", "Done" => "Done", "Not Required" => "Not Required"] AS $status_value => $status_label)
+                                <option value="{{ $status_value }}" {{ old("status", $i->status) == $status_value ? "selected" : "" }}>{{ $status_label }}</option>
+                                @endforeach
                                 </select>
                               </div>
                         </div>

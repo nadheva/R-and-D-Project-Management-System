@@ -36,7 +36,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('item-update/{id}', [ItemController::class, 'update']);
     Route::resource('model', ModelController::class)->except('update');
     Route::put('model-update/{id}', [ModelController::class, 'update'])->name('model-update');
-    Route::resource('project', ProjectController::class);
+    Route::resource('project', ProjectController::class)->except('update');
+    Route::put('project-update/{id}', [ProjectController::class, 'update'])->name('project-update');
     Route::resource('rio', RioController::class)->except('update');
     Route::put('rio-update/{id}', [RioController::class, 'update']);
     Route::resource('sub-item', SubItemController::class);

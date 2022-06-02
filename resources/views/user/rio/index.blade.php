@@ -51,9 +51,27 @@
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold" >{{ $i->due_date }}</span>
                   </td>
+                  @if($i->status == 'Open')
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold" >{{ $i->status }}</span>
+                    <span class="badge badge-primary badge-sm font-weight-bold" >{{ $i->status }}</span>
                   </td>
+                  @elseif($i->status == 'On Progress')
+                  <td class="align-middle text-center">
+                    <span class="badge badge-info badge-sm font-weight-bold" >{{ $i->status }}</span>
+                  </td>
+                  @elseif($i->status == 'Need Update')
+                  <td class="align-middle text-center">
+                    <span class="badge badge-warning badge-sm font-weight-bold" >{{ $i->status }}</span>
+                  </td>
+                  @elseif($i->status == 'Not Required')
+                  <td class="align-middle text-center">
+                    <span class="badge badge-danger badge-sm font-weight-bold" >{{ $i->status }}</span>
+                  </td>
+                  @elseif($i->status == 'Done')
+                  <td class="align-middle text-center">
+                    <span class="badge badge-success badge-sm font-weight-bold" >{{ $i->status }}</span>
+                  </td>
+                  @endif
                   <td>
                     <div class="align-middle text-center">
                       <form id="form-delete" action="{{route('rio.destroy', $i->id)}}" method="POST" style="display: inline">
@@ -173,7 +191,7 @@
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1" class="col-form-label">PIC:</label>
                                 <select class="form-control" name="user_id" id="exampleFormControlSelect1" required>
-                                {{-- <option value="{{$i->user_id}}">{{$i->user->email}}</option> --}}
+                                {{-- <option value="{{$i->user_id}}">{{$i->user-}}</option> --}}
                                   @foreach ($user as $i)
                                   <option value="{{$i->id}}">{{$i->name}}</option>
                                   @endforeach
@@ -186,11 +204,14 @@
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1" class="col-form-label">Status:</label>
                                 <select class="form-control" name="status" id="exampleFormControlSelect1" required>
-                                <option value="{{$item->status}}" selected>{{$item->status}}</option>
-                                <option value="Done">Done</option>
+                                {{-- <option value="{{$item->status}}" selected>{{$item->status}}</option> --}}
+                                @foreach(["Need Update" => "Need Update", "Open" => "Open", "On Progress" => "On Progress", "Done" => "Done", "Not Required" => "Not Required"] AS $status_value => $status_label)
+                                <option value="{{ $status_value }}" {{ old("status", $item->status) == $status_value ? "selected" : "" }}>{{ $status_label }}</option>
+                                @endforeach
+                                {{-- <option value="Done">Done</option>
                                 <option value="On Progress">On Progress</option>
                                 <option value="Need Update">Need Update</option>
-                                <option value="Not Required">Not Required</option>
+                                <option value="Not Required">Not Required</option> --}}
                                 </select>
                               </div>
                         </div>

@@ -24,6 +24,14 @@ class Project extends Model
         'sub_item_id' => 'array',
     ];
 
+    protected $status = [
+        'Open',
+        'Done',
+        'Need Update',
+        'Not Required',
+        'On Progress'
+    ];
+
     public function model()
     {
         return $this->belongsTo(ModelProduct::class);
@@ -41,7 +49,7 @@ class Project extends Model
 
     public function sub_item()
     {
-        return $this->belongsTo(Sub_item::class, 'sub_item_id', 'id');
+        return $this->belongsTo(Sub_item::class, 'sub_item_id');
     }
 
 

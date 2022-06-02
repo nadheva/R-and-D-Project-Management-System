@@ -19,6 +19,14 @@ class RIO extends Model
         'status'
     ];
 
+    protected $status = [
+        'Open',
+        'Done',
+        'Need Update',
+        'Not Required',
+        'On Progress'
+    ];
+
     public function model()
     {
         return $this->belongsTo(ModelProduct::class);
@@ -26,7 +34,7 @@ class RIO extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 }

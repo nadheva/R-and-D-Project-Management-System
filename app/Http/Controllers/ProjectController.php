@@ -8,6 +8,7 @@ use App\Models\ModelProduct;
 use App\Models\User;
 use App\Models\Item;
 use App\Models\Sub_item;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProjectController extends Controller
 {
@@ -75,7 +76,7 @@ class ProjectController extends Controller
             'item_id' => $request->item_id,
             'user_id' => $request->user_id,
             'remark' => $request->remark,
-            'staus' => 'Open',
+            'status' => 'Open',
             'sub_item_id' => $dataa
         ]);
         Alert::success('Success', 'Data has been submitted!');
@@ -119,13 +120,13 @@ class ProjectController extends Controller
             $i = 0;
             foreach ($sub_item as $item) {
                 // dd($item);
-                $dataa[$i] = ([
+                $dataaa[$i] = ([
                     'id' => (int) $item,
                 ]);
                 $i++;
             }
         } else {
-            $dataa = [];
+            $dataaa = [];
         }
 
         $project = Project::findOrfail($id);
@@ -134,7 +135,7 @@ class ProjectController extends Controller
         $project->user_id = $request->user_id;
         $project->remark = $request->remark;
         $project->status = $request->status;
-        $project->sub_item_id = $dataa;
+        $project->sub_item_id = $dataaa;
         $project->save();
         Alert::info('Info', 'Data has been updated!');
         return redirect()->back();
