@@ -17,7 +17,7 @@ class CreateSubItemTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->foreignId('item_id')->constrained('item')->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreignId('item_id')->constrained('item')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

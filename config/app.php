@@ -52,9 +52,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost/TaskMonitoring'),
+    'url' => env('APP_URL', 'http://localhost/R-and-D-Project-Management-System'),
 
-    'asset_url' => env('ASSET_URL', 'http://localhost/TaskMonitoring/public'),
+    'asset_url' => env('ASSET_URL', 'http://localhost/R-and-D-Project-Management-System/public'),
 
     /*
     |--------------------------------------------------------------------------

@@ -18,6 +18,7 @@ class CreateProjectTable extends Migration
             $table->foreignId('model_id')->constrained('model')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('item_id')->constrained('item')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->json('sub_item_id')->nullable();
             $table->text('remark')->nullable();
             $table->enum('status', ['Done', 'On Progress', 'Need Update', 'Open', 'Not Required']);
             $table->timestamps();

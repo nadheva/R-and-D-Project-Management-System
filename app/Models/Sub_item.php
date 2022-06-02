@@ -12,11 +12,11 @@ class Sub_item extends Model
     protected $fillable = [
         'name',
         'description',
-        'item_id'
+        // 'item_id'
     ];
 
-    public function item()
-    {
-        return $this->belongsTo(Item::class);
-    }
+    // public function item()
+    // {
+    //     return $this->belongsTo(Item::class);
+    // }
 }

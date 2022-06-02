@@ -134,12 +134,12 @@
 
 
     <!-- Modal Edit Perangkat -->
-    @foreach($rio as $i)
-    <div class="modal fade" id="editPerangkat-{{$i->id}}" tabindex="-1" role="dialog" aria-labelledby="editPerangkatLabel"
+    @foreach($rio as $item)
+    <div class="modal fade" id="editPerangkat-{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="editPerangkatLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form method="post" action="{{ url('rio-update', $i->id) }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('rio-update', $item->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="modal-header">
@@ -152,7 +152,7 @@
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1" class="col-form-label">Model:</label>
                                 <select class="form-control" name="model_id" id="exampleFormControlSelect1" required>
-                                  <option value="{{$i->model_id}}" selected>{{$i->model->name}}</option>
+                                  <option value="{{$item->model_id}}" selected>{{$item->model->name}}</option>
                                   @foreach ($model as $i)
                                   <option value="{{$i->id}}">{{$i->name}}</option>
                                   @endforeach
@@ -160,16 +160,20 @@
                               </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Issue/Risk/Opportunity:</label>
-                                <input type="text" class="form-control" name="issue" placeholder="*Issue/Risk/Opportunity" value="{{$i->issue}}" required>
+                                <input type="text" class="form-control" name="issue" placeholder="*Issue/Risk/Opportunity" value="{{$item->issue}}" required>
                             </div>
                             <div class="form-group">
                                 <label for="message-text" class="col-form-label">Detail:</label>
-                                <textarea class="form-control" name="detail" id="mytextarea" placeholder="*Detail" value="{{$i->detail}}" required>{{$i->detail}}</textarea>
+                                <textarea class="form-control" name="detail" id="mytextarea" placeholder="*Detail" value="{{$item->detail}}" required>{{$item->detail}}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Action:</label>
+                                <textarea class="form-control" name="action" id="mytextarea" placeholder="*Action" value="{{$item->action}}" required>{{$item->action}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1" class="col-form-label">PIC:</label>
                                 <select class="form-control" name="user_id" id="exampleFormControlSelect1" required>
-                                {{-- <option value="{{$i->user_id}}">{{$i->user->name}}</option> --}}
+                                {{-- <option value="{{$i->user_id}}">{{$i->user->email}}</option> --}}
                                   @foreach ($user as $i)
                                   <option value="{{$i->id}}">{{$i->name}}</option>
                                   @endforeach
@@ -177,12 +181,12 @@
                               </div>
                             <div class="form-group">
                                 <label for="message-text" class="col-form-label">Due Date:</label>
-                                <input class="form-control datetimepicker" placeholder="Please select date" type="date" onfocus="focused(this)" onfocusout="defocused(this)" name="due_date" value="{{$i->due_date}}">
+                                <input class="form-control datetimepicker" placeholder="Please select date" type="date" onfocus="focused(this)" onfocusout="defocused(this)" name="due_date" value="{{$item->due_date}}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1" class="col-form-label">Status:</label>
                                 <select class="form-control" name="status" id="exampleFormControlSelect1" required>
-                                <option value="{{$i->status}}" disabled>{{$i->status}}</option>
+                                <option value="{{$item->status}}" selected>{{$item->status}}</option>
                                 <option value="Done">Done</option>
                                 <option value="On Progress">On Progress</option>
                                 <option value="Need Update">Need Update</option>
@@ -216,8 +220,8 @@
               var name = $(this).data("name");
               event.preventDefault();
               swal({
-                  title: `Hapus Data?`,
-                  text: "Jika data terhapus, data akan hilang selamanya!",
+                  title: `Delete Project RIO?`,
+                  text: "If the data is deleted, the data will be lost forever!",
                   icon: "warning",
                   buttons: true,
                   dangerMode: true,

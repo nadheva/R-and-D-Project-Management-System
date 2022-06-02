@@ -20,7 +20,7 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
                   {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode</th> --}}
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Item</th>
+                  {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Item</th> --}}
                   {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Stok</th> --}}
                   {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Harga</th> --}}
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
@@ -39,9 +39,9 @@
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold" maxlength="10" >{{ $i->name }}</span>
                   </td>
-                  <td class="align-middle text-center">
+                  {{-- <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold" maxlength="10" >{{ $i->item->name }}</span>
-                  </td>
+                  </td> --}}
                   {{-- <td class="align-middle text-center">
                     <img src="{{ asset( $item->gambar) }}" style="max-width: 70px" class="img-fluid shadow border-radius-xl">
                   </td> --}}
@@ -91,7 +91,7 @@
                             <label for="recipient-name" class="col-form-label">Name:</label>
                             <input type="text" class="form-control" name="name" placeholder="*Item name" required>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="exampleFormControlSelect1" class="col-form-label">Main item:</label>
                             <select class="form-control" name="item_id" id="exampleFormControlSelect1" required>
                               @foreach ($item as $i)
@@ -99,7 +99,7 @@
                               <option value="{{$i->id}}">{{$i->name}}</option>
                               @endforeach
                             </select>
-                          </div>
+                          </div> --}}
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Description:</label>
                             <textarea class="form-control" name="description" id="mytextarea" placeholder="*Item description" required></textarea>
@@ -141,14 +141,14 @@
                             <label for="recipient-name" class="col-form-label">Nama:</label>
                             <input type="text" class="form-control" name="name" value="{{$i->name}}">
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="exampleFormControlSelect1" class="col-form-label">Main item:</label>
                             <select class="form-control" name="item_id" id="exampleFormControlSelect1" required>
                               @foreach ($item as $i)
                               <option value="{{$i->id}}" selected>{{$i->nama}}</option>
                               @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                         {{-- <div class="form-group">
                             <label for="message-text" class="col-form-label">Gambar Detail:</label>
                             <input type="file" class="form-control" name="gambar_detail[]" value="{{asset($i->gambar_detail)}}" multiple required>

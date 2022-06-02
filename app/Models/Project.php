@@ -12,9 +12,16 @@ class Project extends Model
     protected $fillable = [
         'model_id',
         'item_id',
+        'sub_item_id',
         'user_id',
         'remark',
         'status'
+    ];
+
+    protected $primaryKey = 'id';
+
+    protected $casts = [
+        'sub_item_id' => 'array',
     ];
 
     public function model()
@@ -24,11 +31,18 @@ class Project extends Model
 
     public function item()
     {
-        return $this->belongsTo(Item::class);
+        return $this->belongsTo(Item::class, 'item_id', 'id');
     }
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+    public function sub_item()
+    {
+        return $this->belongsTo(Sub_item::class, 'sub_item_id', 'id');
+    }
+
+
 }

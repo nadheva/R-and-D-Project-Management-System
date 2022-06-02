@@ -39,7 +39,7 @@
                     <span class="text-secondary text-xs font-weight-bold" >{{ $i->item->name }}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;">{!! $i->sub_item !!}</span>
+                    <span class="text-secondary text-xs font-weight-bold" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;">{{ $i->sub_item->name }}</span>
                   </td>
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold" >{{ $i->user->name }}</span>
@@ -103,7 +103,7 @@
                           </div>
                           <div class="form-group">
                             <label for="exampleFormControlSelect1" class="col-form-label">Sub Item:</label>
-                            <select class="form-control" name="sub_item[]" multiple="multiple" id="select2Multiple" required>
+                            <select class="form-control" name="sub_item_id[]" multiple="multiple" data-live-search="true" id="select2Multiple" required>
                               @foreach ($sub_item as $i)
                               <option value="{{$i->id}}">{{$i->name}}</option>
                               @endforeach
@@ -162,7 +162,7 @@
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1" class="col-form-label">Item:</label>
                                 <select class="form-control" name="item_id" id="exampleFormControlSelect1" required>
-                                    <option value="{{$i->item_id}}">{{$i->item->name}}</option>
+                                    {{-- <option value="{{$i->item_id}}">{{$i->item->name}}</option> --}}
                                   @foreach ($item as $i)
                                   <option value="{{$i->id}}">{{$i->name}}</option>
                                   @endforeach
@@ -175,7 +175,7 @@
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1" class="col-form-label">PIC:</label>
                                 <select class="form-control" name="user_id" id="exampleFormControlSelect1" required>
-                                <option value="{{$i->user_id}}">{{$i->user->name}}</option>
+                                {{-- <option value="{{$i->user_id}}">{{$i->user->name}}</option> --}}
                                   @foreach ($user as $i)
                                   <option value="{{$i->id}}">{{$i->name}}</option>
                                   @endforeach

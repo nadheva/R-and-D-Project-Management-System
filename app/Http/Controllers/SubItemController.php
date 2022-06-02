@@ -46,13 +46,13 @@ class SubItemController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'item_id' => 'required'
+            // 'item_id' => 'required'
         ]);
 
         Sub_item::create([
             'name' => $request->name,
             'description' => $request->description,
-            'item_id' => $request->item_id
+            // 'item_id' => $request->item_id
         ]);
         Alert::success('Success', 'Data has been submitted!');
         return redirect()->back();
@@ -93,7 +93,7 @@ class SubItemController extends Controller
         $sub_item = Sub_item::findOrfail($id);
         $sub_item->name = $request->name;
         $sub_item->description = $request->description;
-        $sub_item->item_id = $request->item_id;
+        // $sub_item->item_id = $request->item_id;
         $sub_item->save();
         Alert::info('Info', 'Data has been updated!');
         return redirect()->back();

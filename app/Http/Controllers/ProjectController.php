@@ -49,13 +49,26 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'model_id' => 'required',
-            'item_id' => 'required',
-            'user_id' => 'required',
-            'remark' => 'required',
-            'status' => 'required'
-        ]);
+        // $request->validate([
+        //     'model_id' => 'required',
+        //     'item_id' => 'required',
+        //     'user_id' => 'required',
+        //     'remark' => 'required',
+        //     'status' => 'required'
+        // ]);
+        $sub_item = $request->sub_item_id;
+        if($sub_item){
+            $i = 0;
+            foreach ($sub_item as $item) {
+                // dd($item);
+                $dataa[$i] = ([
+                    'id' => (int) $item,
+                ]);
+                $i++;
+            }
+        } else {
+            $dataa = [];
+        }
 
         Project::create([
             'model_id' => $request->model_id,
@@ -63,6 +76,7 @@ class ProjectController extends Controller
             'user_id' => $request->user_id,
             'remark' => $request->remark,
             'staus' => 'Open',
+            'sub_item_id' => $dataa
         ]);
         Alert::success('Success', 'Data has been submitted!');
         return redirect()->back();
@@ -100,12 +114,27 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $sub_item = $request->sub_item_id;
+        if($sub_item){
+            $i = 0;
+            foreach ($sub_item as $item) {
+                // dd($item);
+                $dataa[$i] = ([
+                    'id' => (int) $item,
+                ]);
+                $i++;
+            }
+        } else {
+            $dataa = [];
+        }
+
         $project = Project::findOrfail($id);
         $project->model_id = $request->model_id;
         $project->item_id = $request->item_id;
         $project->user_id = $request->user_id;
         $project->remark = $request->remark;
         $project->status = $request->status;
+        $project->sub_item_id = $dataa;
         $project->save();
         Alert::info('Info', 'Data has been updated!');
         return redirect()->back();

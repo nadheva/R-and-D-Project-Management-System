@@ -14,8 +14,8 @@ class Item extends Model
         'description'
     ];
 
-    public function sub_item()
-    {
-        return $this->hasMany(Sub_item::class);
-    }
+    // public function sub_item()
+    // {
+    //     return $this->hasMany(Sub_item::class);
+    // }
 }
