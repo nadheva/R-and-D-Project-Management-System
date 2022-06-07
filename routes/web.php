@@ -42,7 +42,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('rio-update/{id}', [RioController::class, 'update']);
     Route::resource('sub-item', SubItemController::class);
     Route::resource('dashboard', DashboardController::class);
-    Route::resource('user', DashboardController::class);
+    Route::resource('user', UserController::class)->except('update');
+    Route::put('user-update/{id}', [UserController::class, 'update'])->name('user-update');
     Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'] );
 });
 
