@@ -194,8 +194,8 @@
               var name = $(this).data("name");
               event.preventDefault();
               swal({
-                  title: `Hapus Data?`,
-                  text: "Jika data terhapus, data akan hilang selamanya!",
+                title: `Delete Sub Item?`,
+                  text: "If the data is deleted, the data will be lost forever!",
                   icon: "warning",
                   buttons: true,
                   dangerMode: true,
