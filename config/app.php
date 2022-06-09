@@ -52,9 +52,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost/R-and-D-Project-Management-System'),
+    'url' => env('APP_URL', 'http://'.$_SERVER['HTTP_HOST'].'/R-and-D-Project-Management-System'),
 
-    'asset_url' => env('ASSET_URL', 'http://localhost/R-and-D-Project-Management-System/public'),
+    'asset_url' => env('ASSET_URL', 'http://'.$_SERVER['HTTP_HOST'].'/R-and-D-Project-Management-System/public'),
 
     /*
     |--------------------------------------------------------------------------
