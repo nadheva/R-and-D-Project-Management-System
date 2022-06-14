@@ -16,19 +16,19 @@ class CreateTaskTable extends Migration
         Schema::create('task', function (Blueprint $table) {
             $table->id();
             $table->string('task');
-            $table->enum('time', ['07.30 - 08.00']);
-            $table->longText('monday')->nullable();
-            $table->longText('tuesday')->nullable();
-            $table->longText('wednesday')->nullable();
-            $table->longText('thursday')->nullable();
-            $table->longText('friday')->nullable();
-            $table->longText('saturday')->nullable();
-            $table->longText('sunday')->nullable();
-            $table->foreignId('project_id')->constrained('project')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('project');
+            $table->boolean('monday')->nullable();
+            $table->boolean('tuesday')->nullable();
+            $table->boolean('wednesday')->nullable();
+            $table->boolean('thursday')->nullable();
+            $table->boolean('friday')->nullable();
+            $table->boolean('saturday')->nullable();
+            $table->boolean('sunday')->nullable();
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
-            $table->enum('status', ['process', 'cancel']);
+            $table->date('start_date');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->enum('status', ['Done', 'On Progress', 'Need Update', 'Open', 'Not Required'])->default('Open');
             $table->timestamps();
         });
     }
