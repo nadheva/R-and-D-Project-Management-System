@@ -82,7 +82,7 @@
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Image:</label>
-                            <input type="file" class="form-control" name="image" placeholder="*User image" required>
+                            <input type="file" class="form-control" name="image" placeholder="*User image">
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Email:</label>

@@ -89,7 +89,7 @@
                             <input type="number" class="form-control" name="kode_perangkat" placeholder="4 Digit" required>
                         </div> --}}
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Name:</label>
+                            <label for="recipient-name" class="col-form-label">Item Name:</label>
                             <input type="text" class="form-control" name="name" placeholder="*Item name" required>
                         </div>
                         {{-- <div class="form-group">
@@ -109,7 +109,7 @@
                             <input type="number" class="form-control" name="harga" required>
                         </div> --}}
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Description:</label>
+                            <label for="message-text" class="col-form-label">Item Description:</label>
                             <textarea class="form-control" name="description" id="mytextarea" placeholder="*Item description" required></textarea>
                         </div>
 
@@ -146,7 +146,7 @@
                           <input type="number" class="form-control" name="kode_perangkat" value="{{$i->kode_perangkat}}" placeholder="4 Digit">
                         </div> --}}
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Nama:</label>
+                            <label for="recipient-name" class="col-form-label">Item Name:</label>
                             <input type="text" class="form-control" name="name" value="{{$i->name}}">
                         </div>
                         {{-- <div class="form-group">
@@ -166,7 +166,7 @@
                             <input type="number" class="form-control" name="harga" value="{{$i->harga}}">
                         </div> --}}
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Description:</label>
+                            <label for="message-text" class="col-form-label">Item Description:</label>
                             <textarea class="form-control" name="description" id="mytextarea" value="{{$i->description}}">{{$i->description}}</textarea>
                         </div>
 

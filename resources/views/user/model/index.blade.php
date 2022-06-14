@@ -73,15 +73,15 @@
                     </div>
                       <div class="modal-body">
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Name:</label>
+                            <label for="recipient-name" class="col-form-label">Model Name:</label>
                             <input type="text" class="form-control" name="name" placeholder="*Model name" required>
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Image:</label>
-                            <input type="file" class="form-control" name="image" required>
+                            <label for="message-text" class="col-form-label">Model Image:</label>
+                            <input type="file" class="form-control" name="image">
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Description:</label>
+                            <label for="message-text" class="col-form-label">Model Description:</label>
                             <textarea class="form-control" name="description" id="mytextarea" placeholder="*Model description" required></textarea>
                         </div>
 
@@ -114,15 +114,15 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Name:</label>
+                            <label for="recipient-name" class="col-form-label">Model Name:</label>
                             <input type="text" class="form-control" name="name" value="{{$i->name}}">
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Image:</label>
-                            <input type="file" class="form-control" name="image" value="{{asset($i->image)}}" required>
+                            <label for="message-text" class="col-form-label">Model Image:</label>
+                            <input type="file" class="form-control" name="image" value="{{asset($i->image)}}">
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Description:</label>
+                            <label for="message-text" class="col-form-label">Model Description:</label>
                             <textarea class="form-control" name="description" id="mytextarea" value="{{$i->description}}">{{$i->description}}</textarea>
                         </div>
 

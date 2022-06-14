@@ -88,7 +88,7 @@
                     </div>
                       <div class="modal-body">
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Name:</label>
+                            <label for="recipient-name" class="col-form-label">Sub Item Name:</label>
                             <input type="text" class="form-control" name="name" placeholder="*Item name" required>
                         </div>
                         {{-- <div class="form-group">
@@ -101,7 +101,7 @@
                             </select>
                           </div> --}}
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Description:</label>
+                            <label for="message-text" class="col-form-label">Sub Item Description:</label>
                             <textarea class="form-control" name="description" id="mytextarea" placeholder="*Item description" required></textarea>
                         </div>
 
