@@ -26,6 +26,16 @@ class User extends Authenticatable
         'image'
     ];
 
+    public function rio()
+    {
+        return $this->hasMany(RIO::class);
+    }
+
+    public function task()
+    {
+        return $this->hasMany(Task::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

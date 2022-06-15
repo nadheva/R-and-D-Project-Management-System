@@ -87,9 +87,9 @@
                   <td>
                     <div class="align-middle text-center">
                         @if($i->exsist == '0')
-                        <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#tambahPerangkat1-{{$i->id}}"><i class="fas fa-plus text-secondary"></i></a>
+                        <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#tambahPerangkat1-{{$i->id}}" title="Add from exsisting data"><i class="fas fa-plus text-secondary"></i></a>
                         @endif
-                        <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#editPerangkat-{{$i->id}}"><i class="fas fa-user-edit text-secondary"></i></a>
+                        <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#editPerangkat-{{$i->id}}" title="Edit"><i class="fas fa-user-edit text-secondary"></i></a>
                       <form id="form-delete" action="{{route('rio.destroy', $i->id)}}" method="POST" style="display: inline">
                         @csrf
                         @method("DELETE")
@@ -227,15 +227,8 @@
                         </button>
                     </div>
                         <div class="modal-body">
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1" class="col-form-label">Model:</label>
-                                <select class="form-control" name="model_id" id="exampleFormControlSelect1" required>
-                                  <option value="{{$item->model_id}}" selected>{{$item->model->name}}</option>
-                                  @foreach ($model as $i)
-                                  <option value="{{$i->id}}">{{$i->name}}</option>
-                                  @endforeach
-                                </select>
-                              </div>
+                              <input type="hidden" class="form-control" name="user_id"  value="{{$item->user_id}}">
+                                <input type="hidden" class="form-control" name="model_id"  value="{{$item->model_id}}">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Issue/Risk/Opportunity:</label>
                                 <input type="text" class="form-control" name="issue" placeholder="*Issue/Risk/Opportunity" value="{{$item->issue}}" required>
@@ -249,29 +242,15 @@
                                 <textarea class="form-control" name="action" id="mytextarea" placeholder="*Action" value="{{$item->action}}" required>{{$item->action}}</textarea>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1" class="col-form-label">PIC:</label>
-                                <select class="form-control" name="user_id" id="exampleFormControlSelect1" required>
-                                {{-- <option value="{{$i->user_id}}">{{$i->user-}}</option> --}}
-                                  @foreach ($user as $i)
-                                  <option value="{{$i->id}}">{{$i->name}}</option>
-                                  @endforeach
-                                </select>
-                              </div>
-                            <div class="form-group">
                                 <label for="message-text" class="col-form-label">Due Date:</label>
                                 <input class="form-control datetimepicker" placeholder="Please select date" type="date" onfocus="focused(this)" onfocusout="defocused(this)" name="due_date" value="{{$item->due_date}}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1" class="col-form-label">Status:</label>
                                 <select class="form-control" name="status" id="exampleFormControlSelect1" required>
-                                {{-- <option value="{{$item->status}}" selected>{{$item->status}}</option> --}}
                                 @foreach(["Need Update" => "Need Update", "Open" => "Open", "On Progress" => "On Progress", "Done" => "Done", "Not Required" => "Not Required"] AS $status_value => $status_label)
                                 <option value="{{ $status_value }}" {{ old("status", $item->status) == $status_value ? "selected" : "" }}>{{ $status_label }}</option>
                                 @endforeach
-                                {{-- <option value="Done">Done</option>
-                                <option value="On Progress">On Progress</option>
-                                <option value="Need Update">Need Update</option>
-                                <option value="Not Required">Not Required</option> --}}
                                 </select>
                               </div>
                         </div>

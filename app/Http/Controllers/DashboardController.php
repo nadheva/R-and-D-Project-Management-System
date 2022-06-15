@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Task;
+use App\Models\RIO;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -20,10 +23,47 @@ class DashboardController extends Controller
     public function index()
     {
         if(Auth::user()->role == 'admin'){
-            return view('user.dashboard.index');
+            $task = Task::where('user_id',Auth::user()->id)->get();
+            $rio = RIO::where('user_id', Auth::user()->id)->get();
+
+            //number_of_task
+            $task_count = Task::where('user_id',Auth::user()->id)->count();
+            $rio_count = RIO::where('user_id', Auth::user()->id)->count();
+            $number_of_task = $task_count + $rio_count;
+
+            //number_of_open_task
+            $open_task_count = Task::where('user_id',Auth::user()->id)->where('status', '=', 'Open')->count();
+            $open_rio_count = RIO::where('user_id', Auth::user()->id)->where('status', '=', 'Open')->count();
+            $number_of_open_task = $open_task_count + $open_rio_count;
+
+            //number_of_complete_task
+            $complete_task_count = Task::where('user_id',Auth::user()->id)->where('status', '=', 'Done')->count();
+            $complete_rio_count = RIO::where('user_id', Auth::user()->id)->where('status', '=', 'Done')->count();
+            $number_of_complete_task = $complete_task_count + $complete_rio_count;
+            return view('user.dashboard.index', compact('task', 'rio', 'number_of_task', 'number_of_open_task', 'number_of_complete_task'));
         }
         elseif(Auth::user()->role == 'user'){
-            return view('user.dashboard.index');
+            $task = Task::where('user_id',Auth::user()->id)->get();
+            $rio = RIO::where('user_id', Auth::user()->id)->get();
+
+            //number_of_task
+            $task_count = Task::where('user_id',Auth::user()->id)->count();
+            $rio_count = RIO::where('user_id', Auth::user()->id)->count();
+            $number_of_task = $task_count + $rio_count;
+
+            //number_of_open_task
+            $open_task_count = Task::where('user_id',Auth::user()->id)->where('status', '=', 'Open')->count();
+            $open_rio_count = RIO::where('user_id', Auth::user()->id)->where('status', '=', 'Open')->count();
+            $number_of_open_task = $open_task_count + $open_rio_count;
+
+            //number_of_complete_task
+            $complete_task_count = Task::where('user_id',Auth::user()->id)->where('status', '=', 'Done')->count();
+            $complete_rio_count = RIO::where('user_id', Auth::user()->id)->where('status', '=', 'Done')->count();
+            $number_of_complete_task = $complete_task_count + $complete_rio_count;
+
+            //user_performance_dashboard
+            $user = User::latest()->get();
+            return view('user.dashboard.index', compact('task', 'rio', 'number_of_task', 'number_of_open_task', 'number_of_complete_task', 'user'));
         }
     }
 

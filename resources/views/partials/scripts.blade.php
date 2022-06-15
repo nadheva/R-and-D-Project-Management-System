@@ -16,6 +16,7 @@
 <script src="{{asset('tadmin/assets/js/plugins/chartjs.min.js')}}"></script>
 <script src="{{asset('tadmin/assets/js/plugins/threejs.js')}}"></script>
 <script src="{{asset('tadmin/assets/js/plugins/orbit-controls.js')}}"></script>
+<script src="{{asset('tadmin/assets/js/plugins/tilt.min.js')}}"></script>
   <!-- Js conf delete-->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
