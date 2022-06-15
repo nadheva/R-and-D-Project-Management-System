@@ -40,7 +40,10 @@ class DashboardController extends Controller
             $complete_task_count = Task::where('user_id',Auth::user()->id)->where('status', '=', 'Done')->count();
             $complete_rio_count = RIO::where('user_id', Auth::user()->id)->where('status', '=', 'Done')->count();
             $number_of_complete_task = $complete_task_count + $complete_rio_count;
-            return view('user.dashboard.index', compact('task', 'rio', 'number_of_task', 'number_of_open_task', 'number_of_complete_task'));
+
+            //user_performance_dashboard
+            $user = User::latest()->get();
+            return view('user.dashboard.index', compact('task', 'rio', 'number_of_task', 'number_of_open_task', 'number_of_complete_task', 'user'));
         }
         elseif(Auth::user()->role == 'user'){
             $task = Task::where('user_id',Auth::user()->id)->get();
