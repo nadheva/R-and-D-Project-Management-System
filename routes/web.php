@@ -36,7 +36,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('model-update/{id}', [ModelController::class, 'update'])->name('model-update');
     Route::resource('project', ProjectController::class)->except('update');
     Route::put('project-update/{id}', [ProjectController::class, 'update'])->name('project-update');
-    Route::resource('rio', RioController::class)->except('update');
+    Route::resource('rio', RioController::class)->except('update', 'store_exist');
+    Route::post('rio-store-exsist', [RioController::class, 'store_exsist'])->name('rio-store-exsist');
     Route::put('rio-update/{id}', [RioController::class, 'update']);
     Route::resource('sub-item', SubItemController::class);
     Route::resource('dashboard', DashboardController::class);

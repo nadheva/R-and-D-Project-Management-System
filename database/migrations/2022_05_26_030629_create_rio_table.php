@@ -21,7 +21,7 @@ class CreateRioTable extends Migration
             $table->text('action');
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->date('due_date');
-            // $table->string('status');
+            $table->boolean('exsist')->default(false);
             $table->enum('status', ['Done', 'On Progress', 'Need Update', 'Open', 'Not Required'])->default('Open');
             $table->timestamps();
         });

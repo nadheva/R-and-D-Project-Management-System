@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -19,7 +21,9 @@ class TaskController extends Controller
 
     public function index()
     {
-        return view('user.task.tes');
+        $user = User::latest()->get();
+        $task = Task::get();
+        return view('user.task.index', compact('user', 'task'));
     }
 
     /**
@@ -40,7 +44,27 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->request->validate([
+            'task' => 'required',
+            'project' => 'required',
+            'start_date' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required'
+        ]);
+
+        Task::create([
+            'task' => $request->task,
+            'project' => $request->project,
+            'day' => $request->day,
+            'user_id' => $request->user_id,
+            'start_date' => \Carbon\Carbon::createFromFormat('l, d F Y', $request->start_date),
+            'start_time' => \Carbon\Carbon::createFromFormat('h:i a', $request->start_time),
+            'end_time' => \Carbon\Carbon::createFromFormat('h:i a', $request->start_time),
+            'status' => 'Open'
+        ]);
+
+        Alert::success('Success', 'Data has been submitted!');
+        return redirect()->back();
     }
 
     /**

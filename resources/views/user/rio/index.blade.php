@@ -33,6 +33,7 @@
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
                   </td>
+                  @if($i->exsist == '0')
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold" >{{ $i->model->name }}</span>
                   </td>
@@ -42,6 +43,17 @@
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;">{!! $i->detail !!}</span>
                   </td>
+                  @elseif($i->exsist == '1')
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold" ></span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold" ></span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;"></span>
+                  </td>
+                  @endif
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;">{!! $i->action !!}</span>
                   </td>
@@ -74,12 +86,15 @@
                   @endif
                   <td>
                     <div class="align-middle text-center">
+                        @if($i->exsist == '0')
+                        <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#tambahPerangkat1-{{$i->id}}"><i class="fas fa-plus text-secondary"></i></a>
+                        @endif
+                        <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#editPerangkat-{{$i->id}}"><i class="fas fa-user-edit text-secondary"></i></a>
                       <form id="form-delete" action="{{route('rio.destroy', $i->id)}}" method="POST" style="display: inline">
                         @csrf
                         @method("DELETE")
                         <button type="submit" class="btn btn-link text-danger text-gradient px-3 mb-0 show_confirm" data-toggle="tooltip" title='Delete' ><i class="fas fa-trash text-secondary"></i></button>
                       </form>
-                      <a class="btn btn-link text-dark px-3 mb-0" href="" data-bs-toggle="modal" data-bs-target="#editPerangkat-{{$i->id}}"><i class="fas fa-user-edit text-secondary"></i></a>
                     </div>
                   </td>
                 </tr>
@@ -148,6 +163,51 @@
             </div>
         </div>
     </div>
+
+    @foreach($rio_select as $n)
+    <div class="modal fade" id="tambahPerangkat1-{{$n->id}}" tabindex="-1" role="dialog" aria-labelledby="tambahPerangkat1Label"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form method="POST" action="{{ route('rio-store-exsist') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tambahPerangkat1Label">Add From {{$n->issue}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                  <div class="modal-body">
+                        <input type="hidden" class="form-control" name="model_id" value="{{$n->model_id}}">
+                        <input type="hidden" class="form-control" name="issue" value="{{$n->issue}}">
+                        <input type="hidden" class="form-control" name="detail" value="{{$n->detail}}">
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Action:</label>
+                        <textarea class="form-control" name="action" id="mytextarea" placeholder="*Action" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1" class="col-form-label">PIC:</label>
+                        <select class="form-control" name="user_id" id="exampleFormControlSelect1" required>
+                        <option value="">--Select PIC--</option>
+                          @foreach ($user as $i)
+                          <option value="{{$i->id}}">{{$i->name}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Due Date:</label>
+                        <input class="form-control datetimepicker" name="due_date"  placeholder="Please select date" type="date" onfocus="focused(this)" onfocusout="defocused(this)">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn bg-gradient-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
 
 
 

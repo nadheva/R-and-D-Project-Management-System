@@ -22,10 +22,11 @@ class RioController extends Controller
 
     public function index()
     {
-        $rio = RIO::all();
+        $rio = RIO::orderBy('issue', 'DESC')->get();
+        $rio_select = RIO::latest()->get();
         $model = ModelProduct::latest()->get();
         $user = User::latest()->get();
-        return view('user.rio.index', compact('rio', 'model', 'user'));
+        return view('user.rio.index', compact('rio', 'model', 'user', 'rio_select'));
     }
 
     /**
@@ -63,6 +64,7 @@ class RioController extends Controller
             'user_id' => $request->user_id,
             'due_date' => \Carbon\Carbon::createFromFormat('Y-m-d', $request->due_date),
             'status' => 'Open',
+            'exsist'  => '0'
         ]);
         Alert::success('Success', 'Data has been submitted!');
         return redirect()->back();
@@ -126,5 +128,30 @@ class RioController extends Controller
         Alert::warning('Warning', 'Data has been deleted!');
         return redirect()->back();
 
+    }
+
+    public function store_exsist(Request $request)
+    {
+        $request->validate([
+            'model_id' => 'required',
+            'issue' => 'required',
+            'detail' => 'required',
+            'action' => 'required',
+            'user_id' => 'required',
+            'due_date' => 'required',
+        ]);
+
+        RIO::create([
+            'model_id' => $request->model_id,
+            'issue' => $request->issue,
+            'detail' => $request->detail,
+            'action' => $request->action,
+            'user_id' => $request->user_id,
+            'due_date' => \Carbon\Carbon::createFromFormat('Y-m-d', $request->due_date),
+            'status' => 'Open',
+            'exsist' => '1'
+        ]);
+        Alert::success('Success', 'Data has been submitted!');
+        return redirect()->back();
     }
 }

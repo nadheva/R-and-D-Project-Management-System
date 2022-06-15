@@ -16,7 +16,8 @@ class RIO extends Model
         'action',
         'user_id',
         'due_date',
-        'status'
+        'status',
+        'exsist'
     ];
 
     protected $status = [

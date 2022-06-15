@@ -18,11 +18,7 @@
               <thead>
                 <tr>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
-                  {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode</th> --}}
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                  {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Gambar</th> --}}
-                  {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Stok</th> --}}
-                  {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Harga</th> --}}
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                 </tr>
@@ -33,21 +29,9 @@
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
                   </td>
-                  {{-- <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold" >{{ $item->kode_perangkat }}</span>
-                  </td> --}}
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold" maxlength="10" >{{ $i->name }}</span>
                   </td>
-                  {{-- <td class="align-middle text-center">
-                    <img src="{{ asset( $item->gambar) }}" style="max-width: 70px" class="img-fluid shadow border-radius-xl">
-                  </td> --}}
-                  {{-- <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{ $item->stok }}</span>
-                  </td> --}}
-                  {{-- <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">Rp. @money($item->harga)</span>
-                  </td> --}}
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;">{!! $i->description !!}</span>
                   </td>
@@ -84,30 +68,10 @@
                         </button>
                     </div>
                       <div class="modal-body">
-                        {{-- <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Kode Perangkat:</label>
-                            <input type="number" class="form-control" name="kode_perangkat" placeholder="4 Digit" required>
-                        </div> --}}
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Item Name:</label>
                             <input type="text" class="form-control" name="name" placeholder="*Item name" required>
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="message-text" class="col-form-label">Gambar:</label>
-                            <input type="file" class="form-control" name="gambar" required>
-                        </div> --}}
-                        {{-- <div class="form-group">
-                            <label for="message-text" class="col-form-label">Gambar Detail:</label>
-                            <input type="file" class="form-control" name="gambar_detail[]" multiple required>
-                        </div> --}}
-                        {{-- <div class="form-group">
-                            <label for="message-text" class="col-form-label">Stok:</label>
-                            <input type="number" class="form-control" name="stok" required>
-                        </div> --}}
-                        {{-- <div class="form-group">
-                            <label for="message-text" class="col-form-label">Harga:</label>
-                            <input type="number" class="form-control" name="harga" required>
-                        </div> --}}
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Item Description:</label>
                             <textarea class="form-control" name="description" id="mytextarea" placeholder="*Item description" required></textarea>
@@ -141,30 +105,10 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        {{-- <div class="form-group">
-                          <label for="recipient-name" class="col-form-label">Kode Perangkat:</label>
-                          <input type="number" class="form-control" name="kode_perangkat" value="{{$i->kode_perangkat}}" placeholder="4 Digit">
-                        </div> --}}
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Item Name:</label>
                             <input type="text" class="form-control" name="name" value="{{$i->name}}">
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="message-text" class="col-form-label">Gambar:</label>
-                            <input type="file" class="form-control" name="gambar" value="{{asset($i->gambar)}}" required>
-                        </div> --}}
-                        {{-- <div class="form-group">
-                            <label for="message-text" class="col-form-label">Gambar Detail:</label>
-                            <input type="file" class="form-control" name="gambar_detail[]" value="{{asset($i->gambar_detail)}}" multiple required>
-                        </div> --}}
-                        {{-- <div class="form-group">
-                            <label for="message-text" class="col-form-label">Stok:</label>
-                            <input type="number" class="form-control" name="stok" value="{{$i->stok}}">
-                        </div> --}}
-                        {{-- <div class="form-group">
-                            <label for="message-text" class="col-form-label">Harga:</label>
-                            <input type="number" class="form-control" name="harga" value="{{$i->harga}}">
-                        </div> --}}
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Item Description:</label>
                             <textarea class="form-control" name="description" id="mytextarea" value="{{$i->description}}">{{$i->description}}</textarea>
