@@ -517,8 +517,8 @@
                             <label for="exampleFormControlSelect1" class="col-form-label">Assigned Person:</label>
                             <select class="form-control" name="user_id" id="exampleFormControlSelect1" required>
                             <option value="{{$i->user_id}}" selected>{{$i->user->name}}</option>
-                              @foreach ($user as $i)
-                              <option value="{{$i->id}}">{{$i->name}}</option>
+                              @foreach ($user as $u)
+                              <option value="{{$u->id}}">{{$u->name}}</option>
                               @endforeach
                             </select>
                           </div>
@@ -527,7 +527,7 @@
                             <select class="form-control" name="day" id="exampleFormControlSelect1" required>
                             <option value="{{$i->day}}" selected>{{$i->day}}</option>
                             @foreach(["monday" => "Monday", "tuesday" => "Tuesday", "wednesday" => "Wednesday", "thursday" => "Thursday","friday" => "Friday"] AS $status_value => $status_label)
-                            <option value="{{ $status_value }}" {{ old("status", $item->status) == $status_value ? "selected" : "" }}>{{ $status_label }}</option>
+                            <option value="{{ $status_value }}" {{ old("day", $i->day) == $status_value ? "selected" : "" }}>{{ $status_label }}</option>
                             @endforeach
                             </select>
                           </div>
@@ -537,12 +537,20 @@
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Start Time:</label>
-                            <input class="form-control" name="start_time" value="{{$i->start}}"  placeholder="Please select time" type="time">
+                            <input class="form-control" name="start_time" value="{{$i->start_time}}"  placeholder="Please select time" type="time">
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">End Time:</label>
-                            <input class="form-control" name="end_time"  placeholder="Please select time" type="time">
+                            <input class="form-control" name="end_time" value="{{$i->end_time}}"  placeholder="Please select time" type="time">
                         </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1" class="col-form-label">Status:</label>
+                            <select class="form-control" name="status" id="exampleFormControlSelect1" required>
+                            @foreach(["Need Update" => "Need Update", "Open" => "Open", "On Progress" => "On Progress", "Done" => "Done", "Not Required" => "Not Required"] AS $status_value => $status_label)
+                            <option value="{{ $status_value }}" {{ old("status", $i->status) == $status_value ? "selected" : "" }}>{{ $status_label }}</option>
+                            @endforeach
+                            </select>
+                          </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>

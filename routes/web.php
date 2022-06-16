@@ -30,7 +30,7 @@ Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('task', TaskController::class)->except('update');
-    Route::put('task-update/{id}', [ItemController::class, 'update']);
+    Route::put('task-update/{id}', [TaskController::class, 'update'])->name('task-update');
     Route::resource('item', ItemController::class)->except('update');
     Route::put('item-update/{id}', [ItemController::class, 'update']);
     Route::resource('model', ModelController::class)->except('update');
