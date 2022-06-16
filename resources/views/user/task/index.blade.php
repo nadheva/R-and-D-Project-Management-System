@@ -459,7 +459,7 @@
                           <div class="form-group">
                             <label for="exampleFormControlSelect1" class="col-form-label">Day:</label>
                             <select class="form-control" name="day" id="exampleFormControlSelect1" required>
-                            <option value="" disabled>--Select Day--</option>
+                            <option value="">--Select Day--</option>
                             @foreach(["monday" => "Monday", "tuesday" => "Tuesday", "wednesday" => "Wednesday", "thursday" => "Thursday","friday" => "Friday"] AS $status_value => $status_label)
                             <option value="{{ $status_value }}" >{{ $status_label }}</option>
                             @endforeach
