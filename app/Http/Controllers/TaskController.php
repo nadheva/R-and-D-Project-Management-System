@@ -22,7 +22,7 @@ class TaskController extends Controller
     public function index()
     {
         $user = User::latest()->get();
-        $task = Task::get();
+        $task = Task::orderBy('start_time', 'DESC')->get();
         return view('user.task.index', compact('user', 'task'));
     }
 
@@ -44,22 +44,22 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $this->request->validate([
-            'task' => 'required',
-            'project' => 'required',
-            'start_date' => 'required',
-            'start_time' => 'required',
-            'end_time' => 'required'
-        ]);
+        // $this->request->validate([
+        //     'task' => 'required',
+        //     'project' => 'required',
+        //     'start_date' => 'required',
+        //     'start_time' => 'required',
+        //     'end_time' => 'required'
+        // ]);
 
         Task::create([
             'task' => $request->task,
             'project' => $request->project,
             'day' => $request->day,
             'user_id' => $request->user_id,
-            'start_date' => \Carbon\Carbon::createFromFormat('l, d F Y', $request->start_date),
-            'start_time' => \Carbon\Carbon::createFromFormat('h:i a', $request->start_time),
-            'end_time' => \Carbon\Carbon::createFromFormat('h:i a', $request->start_time),
+            'start_date' => \Carbon\Carbon::createFromFormat('Y-m-d', $request->start_date),
+            'start_time' => \Carbon\Carbon::createFromFormat('H:i', $request->start_time),
+            'end_time' => \Carbon\Carbon::createFromFormat('H:i', $request->end_time),
             'status' => 'Open'
         ]);
 
@@ -98,7 +98,19 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::findOrfail($id);
+        $task->task = $request->task;
+        $task->project = $request->project;
+        $task->day = $request->day;
+        $task->user_id = $request->user_id;
+        $task->start_date = $request->start_date;
+        $task->start_time = $request->start_time;
+        $task->end_time = $request->end_time;
+        $task->status = $request->status;
+        $task->save();
+
+        Alert::info('Info', 'Data has been updated!');
+        return redirect()->back();
     }
 
     /**
@@ -109,6 +121,8 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Task::findOrfail($id)->delete();
+        Alert::warning('Warning', 'Data has been deleted!');
+        return redirect()->back();
     }
 }

@@ -17,13 +17,6 @@ class CreateTaskTable extends Migration
             $table->id();
             $table->string('task');
             $table->string('project');
-            // $table->boolean('monday')->nullable();
-            // $table->boolean('tuesday')->nullable();
-            // $table->boolean('wednesday')->nullable();
-            // $table->boolean('thursday')->nullable();
-            // $table->boolean('friday')->nullable();
-            // $table->boolean('saturday')->nullable();
-            // $table->boolean('sunday')->nullable();
             $table->enum('day', ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']);
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->date('start_date');
