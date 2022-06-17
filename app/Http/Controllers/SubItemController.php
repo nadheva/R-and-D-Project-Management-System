@@ -108,7 +108,7 @@ class SubItemController extends Controller
      */
     public function destroy($id)
     {
-        $sub_item = Sub_item::findOrfail($id)->delete();
+        Sub_item::find($id)->delete();
         Alert::warning('Warning', 'Data has been deleted!');
         return redirect()->back();
     }

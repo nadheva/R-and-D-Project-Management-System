@@ -56,7 +56,7 @@
                   </td>
                   <td>
                     <div class="align-middle text-center">
-                      <form id="form-delete" action="{{route('item.destroy', $i->id)}}" method="POST" style="display: inline">
+                      <form id="form-delete" action="{{route('sub-item.destroy', $i->id)}}" method="POST" style="display: inline">
                         @csrf
                         @method("DELETE")
                         <button type="submit" class="btn btn-link text-danger text-gradient px-3 mb-0 show_confirm" data-toggle="tooltip" title='Delete' ><i class="fas fa-trash text-secondary"></i></button>

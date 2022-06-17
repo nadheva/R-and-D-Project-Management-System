@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\RIO;
 use App\Models\User;
 use App\Models\ModelProduct;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class RioController extends Controller
@@ -56,16 +57,21 @@ class RioController extends Controller
             'due_date' => 'required',
         ]);
 
-        RIO::create([
-            'model_id' => $request->model_id,
-            'issue' => $request->issue,
-            'detail' => $request->detail,
-            'action' => $request->action,
-            'user_id' => $request->user_id,
-            'due_date' => \Carbon\Carbon::createFromFormat('Y-m-d', $request->due_date),
-            'status' => 'Open',
-            'exsist'  => '0'
-        ]);
+        $rio = RIO::create([
+                    'model_id' => $request->model_id,
+                    'issue' => $request->issue,
+                    'detail' => $request->detail,
+                    'action' => $request->action,
+                    'user_id' => $request->user_id,
+                    'due_date' => \Carbon\Carbon::createFromFormat('Y-m-d', $request->due_date),
+                    'status' => 'Open',
+                    'exsist'  => '0'
+                ]);
+        Mail::send('user.mail.rio', compact('rio'), function ($message) use($rio) {
+            $message->from('no-reply.taskmonitoring@gmail.com');
+            $message->to($rio->user->email, 'R&D Project RIO')
+            ->subject("New Task [Project RIO] From R&D");
+        });
         Alert::success('Success', 'Data has been submitted!');
         return redirect()->back();
     }

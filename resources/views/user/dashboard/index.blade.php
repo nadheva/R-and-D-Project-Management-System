@@ -68,7 +68,7 @@
                                                 <div class="d-flex px-2 py-0">
                                                     <span class="badge bg-gradient-primary me-3"> </span>
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Loading Allocation</h6>
+                                                        <h6 class="mb-0 text-sm">Task Activity</h6>
                                                     </div>
                                                 </div>
                                             </td>

@@ -5,7 +5,7 @@
             <div class="card-header pb-0 p-3">
                 <div class="row">
                   <div class="col-6 d-flex align-items-center">
-                    <h6 class="mb-0">Loading Allocation</h6>
+                    <h6 class="mb-0">Task Activity</h6>
                   </div>
                   <div class="col-6 text-end">
                       <a class="btn bg-gradient-dark mb-0" href="" data-bs-toggle="modal" data-bs-target="#tambahPerangkat"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add Task</a>

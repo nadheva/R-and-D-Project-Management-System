@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\User;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -52,16 +53,22 @@ class TaskController extends Controller
         //     'end_time' => 'required'
         // ]);
 
-        Task::create([
-            'task' => $request->task,
-            'project' => $request->project,
-            'day' => $request->day,
-            'user_id' => $request->user_id,
-            'start_date' => \Carbon\Carbon::createFromFormat('Y-m-d', $request->start_date),
-            'start_time' => \Carbon\Carbon::createFromFormat('H:i', $request->start_time),
-            'end_time' => \Carbon\Carbon::createFromFormat('H:i', $request->end_time),
-            'status' => 'Open'
-        ]);
+        $task =Task::create([
+                    'task' => $request->task,
+                    'project' => $request->project,
+                    'day' => $request->day,
+                    'user_id' => $request->user_id,
+                    'start_date' => \Carbon\Carbon::createFromFormat('Y-m-d', $request->start_date),
+                    'start_time' => \Carbon\Carbon::createFromFormat('H:i', $request->start_time),
+                    'end_time' => \Carbon\Carbon::createFromFormat('H:i', $request->end_time),
+                    'status' => 'Open'
+                ]);
+
+        Mail::send('user.mail.task', compact('task'), function ($message) use($task) {
+            $message->from('no-reply.taskmonitoring@gmail.com');
+            $message->to($task->user->email, 'R&D Task Activity')
+            ->subject("New Task [Loading Allocation] From R&D");
+        });
 
         Alert::success('Success', 'Data has been submitted!');
         return redirect()->back();
