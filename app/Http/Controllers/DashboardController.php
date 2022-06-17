@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\RIO;
 use App\Models\User;
+use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -68,6 +69,15 @@ class DashboardController extends Controller
             $user = User::latest()->get();
             return view('user.dashboard.index', compact('task', 'rio', 'number_of_task', 'number_of_open_task', 'number_of_complete_task', 'user'));
         }
+    }
+
+    public function web_view()
+    {
+        $task = Task::where('status', '=', 'Open')->get();
+        $rio = RIO::where('status', '=', 'Open')->orderBy('issue', 'DESC')->get();
+        $project = Project::where('status', '=', 'Open')->get();
+
+        return view('user.dashboard.web-view', compact('task', 'rio', 'project'));
     }
 
     /**

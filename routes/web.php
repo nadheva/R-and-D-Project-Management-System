@@ -41,7 +41,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('rio-store-exsist', [RioController::class, 'store_exsist'])->name('rio-store-exsist');
     Route::put('rio-update/{id}', [RioController::class, 'update']);
     Route::resource('sub-item', SubItemController::class);
-    Route::resource('dashboard', DashboardController::class);
+    Route::resource('dashboard', DashboardController::class)->except('web_view');
+    Route::get('web-view', [DashboardController::class, 'web_view'])->name('web-view');
     Route::resource('user', UserController::class)->except('update');
     Route::put('user-update/{id}', [UserController::class, 'update'])->name('user-update');
     Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'] );
